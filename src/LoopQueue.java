@@ -1,6 +1,4 @@
-import com.sun.jdi.connect.IllegalConnectorArgumentsException;
 import java.util.*;
-
 public class LoopQueue<E> implements Queue<E> {
 
     private E[] data;
@@ -38,7 +36,6 @@ public class LoopQueue<E> implements Queue<E> {
 
     public void enqueue(E e) {
 
-        // 陣列滿
         if (((this.tail + 1) % this.data.length) == this.front) {
             resize(2 * getCapacity());
         }
@@ -78,8 +75,10 @@ public class LoopQueue<E> implements Queue<E> {
         }
 
         this.data = newData;
+		
+		this.tail = getSize();
         this.front = 0;
-        this.tail = getSize();
+        
     }
 
     @Override
@@ -91,11 +90,18 @@ public class LoopQueue<E> implements Queue<E> {
 
         for (int i = 0; i < getSize(); i++) {
             res.append(data[(i + this.front) % getCapacity()]);
-//            if ((i + 1) % this.data.length != this.tail) res.append(", ");
             if ((i + this.front) % getCapacity() != this.tail - 1) res.append(", ");
         }
 
         res.append(" ] Tail");
         return res.toString();
     }
+	
+	public static void main(String args[]) {
+		
+		
+		LoopQueue<Integer> array = new LoopQueue<Integer>(5);
+		System.out.println(array.toString());
+		
+	}
 }
