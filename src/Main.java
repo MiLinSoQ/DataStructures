@@ -4,6 +4,25 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
+		// LinkedListTest();
+		BinaryTreeTest();
+	}
+	
+	private static void BinaryTreeTest() {
+		System.out.println("This is tree.");
+		
+		BinaryTree tree = new BinaryTree();
+		tree.add(5);
+		System.out.println("Tree size: " + tree.getSize());
+		
+		tree.add(5);
+		System.out.println("Tree size: " + tree.getSize());
+		
+		System.out.println("Contains 5: " + tree.contains(5));
+		
+	}
+	
+	private static void LinkedListTest() {
 		LinkedList<Integer> array = new LinkedList<Integer>();
 		
 		System.out.println(array.toString());
@@ -26,23 +45,6 @@ public class Main {
 		
 		array.removeElements(99);
 		System.out.println(array.toString());
-		
-		// for (int i = 0; i < 10; i++) {
-			// array.addFirst(i * 6);
-			// System.out.println(array.toString());
-			
-		// }
-		
-		// LoopQueue<Integer> array = new LoopQueue<Integer>(4);
-		
-		// for (int i = 0; i < 5; i++) {
-			// array.enqueue(i * 5);
-			// System.out.println(array.toString());
-		// }
-		
-		// array.dequeue();
-		// System.out.println(array.toString());
-	
 	}
 	
 }
