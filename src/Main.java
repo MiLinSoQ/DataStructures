@@ -3,23 +3,39 @@
 public class Main {
 	
 	public static void main(String[] args) {
-		
 		// LinkedListTest();
 		BinaryTreeTest();
 	}
 	
 	private static void BinaryTreeTest() {
-		System.out.println("This is tree.");
+		System.out.println("------------");
 		
 		BinaryTree tree = new BinaryTree();
-		tree.add(5);
-		System.out.println("Tree size: " + tree.getSize());
-		
-		tree.add(5);
-		System.out.println("Tree size: " + tree.getSize());
-		
-		System.out.println("Contains 5: " + tree.contains(5));
-		
+		int[] nums = { 5, 3, 6, 8, 4, 2 };
+
+		for (int i = 0; i < nums.length; i++) {
+			tree.add(nums[i]);
+		}
+
+		/**
+				5
+			  /   \
+			 3	   6 
+		   /   \	 \
+		  2	    4	  8
+
+		*/
+
+		System.out.println("Pre order.");
+		tree.preOrder();
+
+		System.out.println("In order.");
+		tree.inOrder();
+
+		System.out.println("Post order.");
+		tree.postOrder();
+
+		System.out.println("------------");
 	}
 	
 	private static void LinkedListTest() {
