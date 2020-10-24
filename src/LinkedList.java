@@ -2,10 +2,10 @@ public class LinkedList<E> {
 	
 	private class Node {
 		
-		// Ãìµ²ªº­È
+		// éˆçµçš„å€¼
 		private E e;
 		
-		// ±µÄòªºÃìµ²
+		// æ¥çºŒçš„éˆçµ
 		private Node next;
 		
 		public Node(E e, Node next) {
@@ -22,7 +22,7 @@ public class LinkedList<E> {
 		}
 	}
 	
-	// ¥i¥H§Q¥ÎµêÀÀÀY¸`ÂI¡A¨Ï addFirst() & addLast() ÅŞ¿è²Î¤@¡C
+	// å¯ä»¥åˆ©ç”¨è™›æ“¬é ­ç¯€é»ï¼Œä½¿ addFirst() & addLast() é‚è¼¯çµ±ä¸€ã€‚
 	// private dummyHead = new Node();
 	
 	private Node head;
@@ -159,7 +159,7 @@ public class LinkedList<E> {
 		}
 	}
 	
-	// »¼°j§R°£­È¬° e ªºÃìµ²
+	// éè¿´åˆªé™¤å€¼ç‚º e çš„éˆçµ
 	public void removeElements(E e) {
 		this.head = removeElements(this.head, e);
 	}
