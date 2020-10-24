@@ -6,7 +6,7 @@ public class BinaryTree<E extends Comparable<E>> {
 		public Node right;
 		public Node left;
 		
-		public Node(E val) {
+		public Node(E val) { 
 			this.val = val;
 			this.right = null;
 			this.left = null;
@@ -50,14 +50,14 @@ public class BinaryTree<E extends Comparable<E>> {
 		if (node == null) {
 			this.size++;
 			return new Node(val);
-		} else {
-			if (node.val.compareTo(val) < 0) {
-				node.left = add(node.left, val);
-			} else if (node.val.compareTo(val) > 0) {
-				node.right = add(node.right, val);
-			}
-			return node;
+		} 
+
+		if (val.compareTo(node.val) < 0) {
+			node.left = add(node.left, val);
+		} else if (val.compareTo(node.val) > 0) {
+			node.right = add(node.right, val);
 		}
+		return node;
 		
 		// if (val.compareTo(node.val) < 0 && node.left == null) {
 			// node.left = new Node(val);
@@ -76,7 +76,7 @@ public class BinaryTree<E extends Comparable<E>> {
 		// }
 	}
 	
-	// �d�ݬO�_�]�t���� val
+	// 查看是否包含元素 val
 	public boolean contains(E val) {
 		return contains(this.root, val);
 	}
@@ -91,7 +91,45 @@ public class BinaryTree<E extends Comparable<E>> {
 			return contains(node.right, val);
 		}
 	}
+
+	// 前序走訪
+	public void preOrder() {
+		preOrder(this.root);
+	}
+
+	private void preOrder(Node node) {
+		if (node == null) return;
+		System.out.print(node.val + " -> ");
+		preOrder(node.left);
+		preOrder(node.right);
+	}
 	
+
+	// 中序走訪
+	public void inOrder() {
+		inOrder(this.root);
+	}
+
+	private void inOrder(Node node) {
+		if (node == null) return;
+
+		inOrder(node.left);
+		System.out.print(node.val + " -> ");
+		inOrder(node.right);
+	}
+
+	// 後序走訪
+	public void postOrder() {
+		postOrder(this.root);
+	}
+
+	private void postOrder(Node node) {
+		if (node == null) return;
+
+		postOrder(node.left);
+		postOrder(node.right);
+		System.out.print(node.val + " -> ");
+	}
 }
 
 
