@@ -163,7 +163,7 @@ public class BinaryTree<E extends Comparable<E>> {
 	
 	// 找出最大值
 	public E maximum() {
-		if (isEmpty()) throw new IllegalArgumentException("Minimum failed, Binary tree is empty.");
+		if (isEmpty()) throw new IllegalArgumentException("Maximum failed, Binary tree is empty.");
 		return maximum(this.root).val;
 	}
 	
