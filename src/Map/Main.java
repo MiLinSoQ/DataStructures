@@ -4,47 +4,61 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		// testSet();
+		testSet();
 		
-		testBinaryTreeMap();
+		// testBinaryTreeMap();
 		
-		System.out.println("--------------");
+		// System.out.println("--------------");
 		
-		testLinedListMap();
+		// testLinedListMap();
 	}
 	
 	private static void testSet() {
 		
-		// ArrayList<String> array;
-		// long startTime, endTime;
+		ArrayList<String> array;
+		long startTime, endTime;
 		
 		// // 
-		// System.out.println("Read [ The-Scarlet-Letter ].");
-		// array = FileOperation.readStringFromFile("The-Scarlet-Letter.txt");
-		// System.out.println(String.format("[ The-Scarlet-Letter ] words size: [ %d ].", array.size()));
+		System.out.println("Read [ Pride-and-Prejudice ].");
+		array = FileOperation.readStringFromFile("Pride-and-Prejudice.txt");
+		System.out.println(String.format("[ Pride-and-Prejudice ] words size: [ %d ].", array.size()));
 		
-		// System.out.println("-------------------------");
+		System.out.println("-------------------------");
 		
-		// // test linked list set.
-		// startTime = System.nanoTime();
-		// LinkedListSet<String> listSet = new LinkedListSet<>();
-		// for (String word : array) {
-			// listSet.add(word);
-		// }
-		// endTime = System.nanoTime();
-		// System.out.println(String.format("Put in linked list set, the different word size: [ %d ].", listSet.getSize()));
-		// System.out.println(String.format("Use time: [ %.2f s].", (endTime - startTime) / 1000000000.0));
+		// test linked list map.
+		startTime = System.nanoTime();
+		LinkedListMap<String, Integer> listMap = new LinkedListMap<>();
+		for (String word : array) {
+			if (listMap.contains(word)) {
+				listMap.add(word, listMap.get(word) + 1);
+			} else {
+				listMap.add(word, 0);
+			}
+		}
+		endTime = System.nanoTime();
+		System.out.println(String.format("Put in linked list map, the different word size: [ %d ].", listMap.getSize()));
+		System.out.println(String.format("Count 'pride': [ %d ]", listMap.get("pride")));
+		System.out.println(String.format("Count 'prejudice': [ %d ]", listMap.get("prejudice")));
 		
-		// System.out.println("-------------------------");
+		System.out.println(String.format("Use time: [ %.2f s].", (endTime - startTime) / 1000000000.0));
 		
-		// startTime = System.nanoTime();
-		// BinaryTreeSet<String> treeSet = new BinaryTreeSet<>();
-		// for (String word : array) {
-			// treeSet.add(word);
-		// }
-		// endTime = System.nanoTime();
-		// System.out.println(String.format("Put in binary tree set, the different word size: [ %d ].", treeSet.getSize()));
-		// System.out.println(String.format("Use time: [ %.2f s].", (endTime - startTime) / 1000000000.0));
+		System.out.println("-------------------------");
+		
+		startTime = System.nanoTime();
+		BinaryTreeMap<String, Integer> treeMap = new BinaryTreeMap<>();
+		for (String word : array) {
+			if (treeMap.contains(word)) {
+				treeMap.add(word, treeMap.get(word) + 1);
+			} else {
+				treeMap.add(word, 0);
+			}
+		}
+		endTime = System.nanoTime();
+		System.out.println(String.format("Put in binary tree map, the different word size: [ %d ].", treeMap.getSize()));
+		System.out.println(String.format("Count 'pride': [ %d ]", treeMap.get("pride")));
+		System.out.println(String.format("Count 'prejudice': [ %d ]", treeMap.get("prejudice")));
+		
+		System.out.println(String.format("Use time: [ %.2f s].", (endTime - startTime) / 1000000000.0));
 	}
 	
 	private static void testLinedListMap() {
