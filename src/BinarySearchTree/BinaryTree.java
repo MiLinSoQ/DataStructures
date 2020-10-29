@@ -295,12 +295,19 @@ public class BinaryTree<E extends Comparable<E>> {
 		
 		StringBuilder res = new StringBuilder();
 		res.append(String.format("Binary tree:  size: [ %d ]\n", getSize()));
-		print(res, root, "", 0);
+		res.append(chartTree());
 		
 		return res.toString();
 	}
 	
-	private void print(StringBuilder res, Node node, String prefix, int dep) {
+	public String chartTree() {
+		
+		StringBuilder res = new StringBuilder();
+		chartTree(res, root, "", 0);
+		return res.toString();
+	}
+	
+	private void chartTree(StringBuilder res, Node node, String prefix, int dep) {
 		if (node == null) return;
 		dep++;
 		
@@ -310,8 +317,8 @@ public class BinaryTree<E extends Comparable<E>> {
 		
 		res.append(String.format("%s%d\n", prefix, node.val));
 		
-		print(res, node.left, "|--", dep);
-		print(res, node.right, "L--", dep);
+		chartTree(res, node.left, "|--", dep);
+		chartTree(res, node.right, "L--", dep);
 	}
 	
 }
