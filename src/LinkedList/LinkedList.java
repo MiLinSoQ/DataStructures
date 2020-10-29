@@ -23,32 +23,30 @@ public class LinkedList<E> {
 	}
 	
 	// 可以利用虛擬頭節點，使 addFirst() & addLast() 邏輯統一。
-	// private dummyHead = new Node();
-	
-	private Node head;
-	
+	private Node dummyHead;
+	// private Node head;
 	private int size;
 	
+	
 	public LinkedList() {
-		this.head = null;
+		// this.head = null;
+		this.dummyHead = new Node();
 		this.size = 0;
 	}
 	
 	public E get(int index) {
 		if (index < 0 || index >= size) throw new IllegalArgumentException("Get failed, index is illegal.");
 		
-		Node retNode = this.head;
-		
+		Node retNode = this.dummyHead.next;
 		for (int i = 0; i < index; i++) {
-			retNode =retNode.next;
+			retNode = retNode.next;
 		}
 		return retNode.e;
-		
 	}
 	
 	public E getFirst() {
-		if (isEmpty()) throw new IllegalArgumentException("Get failed, data structure is empty.");
-		return this.head.e;
+		return get(0);
+		// return this.dummyHead.next.e;
 	}
 	
 	public E getLast() {
@@ -63,15 +61,24 @@ public class LinkedList<E> {
 		return this.size == 0;
 	}
 	
+	// 是否包含這個 e 元素
+	public boolean contains(E e) {
+		return contains(this.dummyHead.next, e);
+	}
+	
+	private boolean contains(Node node, E e) {
+		if (node == null) return false;
+		if (node.e.equals(e)) return true;
+		return contains(node.next, e);
+	}
+	
 	public void add(int index, E e) {
-		
 		if (index < 0 || index > size) throw new IllegalArgumentException("Add failed, index is illegal.");
 		
-		Node indexNode = this.head;
-		for (int i = 0; i < index - 1; i++) {
+		Node indexNode = this.dummyHead;
+		for (int i = 0; i < index; i++) {
 			indexNode = indexNode.next;
 		}
-		
 		// Node newNode = new Node(e);
 		// newNode.next = indexNode.next;
 		// indexNode.next = newNode;
@@ -80,18 +87,16 @@ public class LinkedList<E> {
 	}
 	
 	public void addFirst(E e) {
-		
 		// Node newNode = new Node(e);
 		// newNode.next = this.head;
 		// this.head = newNode;
-		this.head = new Node(e, this.head);
-		size++;
+		// this.head = new Node(e, this.head);
+		// size++;
+		add(0, e);
 	}
 	
 	public void addLast(E e) {
-		
 		add(size, e);
-		
 		// Node indexNode = this.head;
 		// for (int i = 0; i < size - 1; i++) {
 			// indexNode = indexNode.next;
@@ -104,10 +109,9 @@ public class LinkedList<E> {
 	}
 	
 	public E remove(int index) {
-		
 		if (index < 0 || index >= size) throw new IllegalArgumentException("Remove failed, index is illegal.");
 		
-		Node indexNode = this.head;
+		Node indexNode = this.dummyHead.next;
 		for (int i = 0; i < index - 1; i++) {
 			indexNode = indexNode.next;
 		}
@@ -122,13 +126,14 @@ public class LinkedList<E> {
 	
 	public E removeFirst() {
 		
-		E ret = this.head.e;
+		// E ret = this.head.e;
 		
-		Node indexNode = this.head;
-		this.head = indexNode.next;
-		indexNode = null;
-		size--;
-		return ret;
+		// Node indexNode = this.head;
+		// this.head = indexNode.next;
+		// indexNode = null;
+		// size--;
+		// return ret;
+		return remove(0);
 	}
 	
 	public E removeLast() {
@@ -140,7 +145,7 @@ public class LinkedList<E> {
 		
 		if (isEmpty()) throw new IllegalArgumentException("Remove failed, data structure is empty.");
 		
-		Node indexNode = this.head;
+		Node indexNode = this.dummyHead.next;
 		Node preNode = null;
 		
 		while (indexNode != null) {
@@ -161,7 +166,7 @@ public class LinkedList<E> {
 	
 	// 遞迴刪除值為 e 的鏈結
 	public void removeElements(E e) {
-		this.head = removeElements(this.head, e);
+		this.dummyHead.next = removeElements(this.dummyHead.next, e);
 	}
 	
 	private Node removeElements(Node indexNode, E e) {
@@ -184,7 +189,7 @@ public class LinkedList<E> {
 		res.append(String.format("Linked List: size: [ %d ]\n", size));
 		res.append("Head  ");
 		
-		Node indexHead = this.head;
+		Node indexHead = this.dummyHead.next;
 		while(indexHead != null) {
 			res.append(indexHead.e + " -> ");
 			indexHead = indexHead.next;
