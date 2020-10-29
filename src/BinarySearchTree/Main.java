@@ -5,7 +5,8 @@ public class Main {
 		System.out.println("------------");
 		
 		BinaryTree tree = new BinaryTree();
-		int[] nums = { 8, 4, 12, 2, 6, 10, 14};
+		// int[] nums = { 8, 4, 12, 2, 6, 10, 14, 7, 5, 15, 16 ,17};
+		int[] nums = { 27, 14, 35, 10, 19, 31, 42, 21 };
 
 		for (int i = 0; i < nums.length; i++) {
 			tree.add(nums[i]);
@@ -43,7 +44,6 @@ public class Main {
 		
 		
 		System.out.println(String.format("Floor: [ %d ]", tree.floor(11)));
-		
 		System.out.println(String.format("Ceil: [ %d ]", tree.ceil(11)));
 		
 		// System.out.println(String.format("Remove mim: [ %d ]", tree.removeMin()));

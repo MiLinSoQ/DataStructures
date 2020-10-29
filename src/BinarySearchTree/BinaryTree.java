@@ -295,7 +295,6 @@ public class BinaryTree<E extends Comparable<E>> {
 		
 		StringBuilder res = new StringBuilder();
 		res.append(String.format("Binary tree:  size: [ %d ]\n", getSize()));
-		
 		print(res, root, "", 0);
 		
 		return res.toString();
@@ -303,13 +302,16 @@ public class BinaryTree<E extends Comparable<E>> {
 	
 	private void print(StringBuilder res, Node node, String prefix, int dep) {
 		if (node == null) return;
+		dep++;
 		
-		res.append(prefix);
-		res.append(String.format("%d\n", node.val));
+		for (int i = 1; i < dep - 1; i++) {
+			prefix = "      " + prefix;
+		}
 		
+		res.append(String.format("%s%d\n", prefix, node.val));
 		
-		print(res, node.left, "|---");
-		
+		print(res, node.left, "|--", dep);
+		print(res, node.right, "L--", dep);
 	}
 	
 }
