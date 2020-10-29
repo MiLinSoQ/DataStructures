@@ -4,7 +4,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		testSet();
+		testMap();
 		
 		// testBinaryTreeMap();
 		
@@ -13,7 +13,7 @@ public class Main {
 		// testLinedListMap();
 	}
 	
-	private static void testSet() {
+	private static void testMap() {
 		
 		ArrayList<String> array;
 		long startTime, endTime;
