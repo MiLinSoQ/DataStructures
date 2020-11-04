@@ -12,6 +12,14 @@ public class MaxHeap<E extends Comparable<E>> {
 		this(10);
 	}
 	
+	public MaxHeap(E[] arr) {
+		this.array = new Array<>(arr);
+		
+		for (int i = parent(arr.length - 1); i >= 0 ; i--) {
+			siftDown(i);
+		}
+	}
+	
 	public int getSize() {
 		return this.array.getSize();
 	}
@@ -84,6 +92,13 @@ public class MaxHeap<E extends Comparable<E>> {
 		}
 	}
 	
+	// 取出最大的元素，替換成新的元素。
+	public E replace(E e) {
+		E ret = findMax();
+		this.array.set(0, e);
+		siftDown(0);
+		return ret;
+	}
 	
 	@Override
 	public String toString() {

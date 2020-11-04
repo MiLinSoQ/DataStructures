@@ -4,7 +4,27 @@ public class Main {
 	
 	public static void main(String args[]) {
 		// testMaxHeap();
-		testMaxHeap2();
+		// testMaxHeap2();
+		
+		// int n = 10000000;
+		// Integer[] nums = new Integer[n];
+		// Random random = new Random();
+		// for (int i = 0; i < n; i++) {
+			// nums[i] = random.nextInt(Integer.MAX_VALUE);
+		// }
+		// testMaxHeap3(nums, true);
+		// testMaxHeap3(nums, false);
+		
+		
+		PriorityQueue<Integer> queue = new PriorityQueue();
+		
+		queue.enqueue(25);
+		queue.enqueue(30);
+		queue.enqueue(50);
+		queue.enqueue(10);
+		
+		System.out.println(queue.toString());
+		
 	}
 	
 	
@@ -22,16 +42,18 @@ public class Main {
 		heap.add(63);
 		System.out.println(heap.toString());
 		
-		heap.extractMax();
+		heap.replace(60);
 		System.out.println(heap.toString());
+		// heap.extractMax();
+		// System.out.println(heap.toString());
 		
-		heap.extractMax();
-		System.out.println(heap.toString());
+		// heap.extractMax();
+		// System.out.println(heap.toString());
 		
 	}
 	
 	private static void testMaxHeap2() {
-		int n = 1000000;
+		int n = 10000000;
 		
 		long startTime, endTime;
 		
@@ -57,6 +79,24 @@ public class Main {
 		// System.out.println(heap.toString());
 		
 		
+	}
+	
+	private static void testMaxHeap3(Integer[] testData, boolean isHeapify) {
+		long startTime = System.nanoTime();
+		
+		MaxHeap<Integer> heap;
+		if (isHeapify) {
+			heap = new MaxHeap<>(testData);
+		} else {
+			heap = new MaxHeap<>();
+			for(int num : testData) {
+				heap.add(num);
+			}
+			
+		}
+		long endTime = System.nanoTime();
+		
+		System.out.println(String.format("Is heapify: [ %b ] , use tiem: [ %.2f s]. ", isHeapify, (endTime - startTime) / 1000000000.0));
 	}
 	
 }
