@@ -12,6 +12,14 @@ public class Array<E> {
 		this(10);
 	}
 	
+	public Array(E[] arr) {
+		this.data = (E[]) new Object[arr.length];
+		for (int i = 0; i < arr.length; i ++) {
+			this.data[i] = arr[i];
+		}
+		this.size = arr.length;
+	}
+	
 	public E get(int index) {
 		if (index < 0 || index >= size) throw new IllegalArgumentException("Get failed, index is illegal.");
 		return data[index];
