@@ -12,13 +12,15 @@ public class Main {
 		});
 		
 		
-		// System.out.println(tree.toString());
+		System.out.println(tree.toString());
 		
 		System.out.println("Query: " + tree.query(1, 4));
 		System.out.println("Query: " + tree.query(0, 4));
 		System.out.println("Query: " + tree.query(3, 4));
 		
-		
+		tree.set(0, 3);
+		System.out.println(tree.toString());
+		System.out.println("Query: " + tree.query(0, 4));
 	}
 	
 }

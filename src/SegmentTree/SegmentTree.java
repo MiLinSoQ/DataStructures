@@ -81,6 +81,34 @@ public class SegmentTree<E> {
 		return this.merger.merge(leftResult, rightResult);
 	}
 	
+	// 
+	public void set(int index, E value) {
+		if (index < 0 || index >= this.data.length) throw new IllegalArgumentException("Set fail, Index is illegal.");
+		
+		this.data[index] = value;
+		set(0, 0, this.data.length - 1, index, value);
+	}
+	
+	private void set(int treeIndex, int l, int r, int index, E value) {
+		if (l == r) {
+			this.tree[treeIndex] = value;
+			return;
+		}
+		
+		int mid = l + (r - l) / 2;
+		int leftIndex = leftChild(treeIndex);
+		int rightIndex = rightChild(treeIndex);
+		
+		if (index >= mid + 1) {
+			set(rightIndex, mid + 1, r, index, value);
+		} else { // index <= mid
+			set(leftIndex, l, mid, index, value);
+		}
+		
+		this.tree[treeIndex] = merger.merge(this.tree[leftIndex], this.tree[rightIndex]);
+		
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();
